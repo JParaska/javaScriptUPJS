@@ -23,24 +23,29 @@ var basket = (function(){
 	return {
 		addProduct : function(productID){
 			if (products[productID].inventory===0){
-			    console.error("no more" + products[productID].name);
+			    console.log("no more" + products[productID].name);
 			} else {
 			    content[productID]++;
 			    products[productID].inventory--;
+			    console.log("1 piece of " + products[productID].name + " added");
 			}
 		},
 		removeProduct : function(productID){
 			if (content[productID] > 0) {
-			    contetn[productID]--;
+			    content[productID]--;
 			    products[productID].inventory++;
+			    console.log("1 piece of " + products[productID].name + " removed");
+			} else {
+			    console.log("there is nothingto remove");
 			}
 		},
 		updateProductQuantity : function(productID, quantity) {
 			if (products[productID].inventory+content[productID]>=quantity){
 			    products[productID].inventory-=(quantity-content[productID]);
 			    content[productID]+=(quantity-content[productID]);
+			    console.log("number of " + products[productID].name + " increased to " + content[productID]);
 			} else {
-			    console.error("there not enough pieces of" + products[productID].name);
+			    console.log("there not enough pieces of " + products[productID].name);
 			}
 		},
 		getTotalPrice : function(){
@@ -59,4 +64,9 @@ basket.updateProductQuantity(0, 5);
 basket.getTotalPrice();
 basket.updateProductQuantity(1, 2);
 basket.getTotalPrice();
+basket.removeProduct(1);
+basket.getTotalPrice();
+basket.removeProduct(1);
+basket.getTotalPrice();
+basket.removeProduct(1);
 

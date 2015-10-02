@@ -57,4 +57,6 @@ basket.addProduct(0);
 basket.getTotalPrice();
 basket.updateProductQuantity(0, 5);
 basket.getTotalPrice();
+basket.updateProductQuantity(1, 2);
+basket.getTotalPrice();
 

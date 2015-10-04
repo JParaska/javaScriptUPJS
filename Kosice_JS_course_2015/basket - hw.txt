@@ -1,0 +1,16 @@
+You're task is implementing some web shop basket functionality.
+
+You have an array of products each product has name price and inventory.
+
+What you need to do is implement "addProduct", "removeProduct", "updateProductQuantity" and "getTotalPrice" of basket object. 
+
+"ProductsID" is just index of product in the array in our case it can be "0" or "1"
+For that matter you also need to implement additional class "productLineItem" to store quantity and also we need to store some state of basket(probably an array of added products). 
+
+"addProduct" adds product to basket (1 item), and subtracts 1 from inventory. It can be called more than one per each product. Throw an error if product gets out of stock or productID is not valid
+
+"removeProduct" function removes all of items of defined products in case there's one and throws an error otherwise.
+
+"updateProductQuantity" set defined quantity to item of defined product, throws an error if any input parameter is invalid
+
+"getTotalPrice" return total cost of all products added to cart (productPrice[1] * quiantity[1] + productPrice[2] * quiantity[2] +... + productPrice[n] * quiantity[n])

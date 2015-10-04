@@ -18,34 +18,42 @@ ProductLineItem.prototype = {
 
 var basket = (function(){
 	
-	var content = [0, 0];
+	var content = [];
+  for (j=0; j<products.length; j++){
+    content[j] = 0;
+  }//inicialize the basket on the size of products
+  //value at the index i is amount of the product at index i in array products
 	
 	return {
 		addProduct : function(productID){
-			if (products[productID].inventory===0){
-			    console.log("no more" + products[productID].name);
-			} else {
+      if (productID < products.length) { //existance testing
+			 if (products[productID].inventory===0){ //amount of product testing
+			    console.log("SORRY, no more" + products[productID].name);
+			 } else {
 			    content[productID]++;
 			    products[productID].inventory--;
 			    console.log("1 piece of " + products[productID].name + " added");
-			}
+			 }
+      } else {
+        console.log("SORRY, there is no such product!");
+      }
 		},
-		removeProduct : function(productID){
+		removeProduct : function(productID){//amount in basket testing
 			if (content[productID] > 0) {
 			    content[productID]--;
 			    products[productID].inventory++;
 			    console.log("1 piece of " + products[productID].name + " removed");
 			} else {
-			    console.log("there is nothingto remove");
+			    console.log("SORRY, there is nothing to remove");
 			}
 		},
 		updateProductQuantity : function(productID, quantity) {
-			if (products[productID].inventory+content[productID]>=quantity){
+			if (products[productID].inventory+content[productID]>=quantity){//amount in inventory testing
 			    products[productID].inventory-=(quantity-content[productID]);
 			    content[productID]+=(quantity-content[productID]);
 			    console.log("number of " + products[productID].name + " increased to " + content[productID]);
 			} else {
-			    console.log("there not enough pieces of " + products[productID].name);
+			    console.log("SORRY, there not enough pieces of " + products[productID].name);
 			}
 		},
 		getTotalPrice : function(){
@@ -69,4 +77,4 @@ basket.getTotalPrice();
 basket.removeProduct(1);
 basket.getTotalPrice();
 basket.removeProduct(1);
-
+basket.updateProductQuantity(0, 50);
